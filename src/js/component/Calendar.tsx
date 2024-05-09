@@ -249,16 +249,16 @@ const Index: React.FC<IndexProps> = memo(
     }
     const captionHtml = LOCALE_DATA.weeks.map((item: string, key: string) => {
       return (
-        <div className={`react-datetime-range-calendar__table-caption react-datetime-range-calendar__table-cel no-border`} key={key}>
+        <div className={`react-date-timeframe-picker-calendar__table-caption react-date-timeframe-picker-calendar__table-cel no-border`} key={key}>
           {item}
         </div>
       );
     });
-    let selectorPanelClass = cx('react-datetime-range-dropdown', 'react-datetime-range-calendar__selector-panel', showSelectorPanel && 'visible');
+    let selectorPanelClass = cx('react-date-timeframe-picker-dropdown', 'react-date-timeframe-picker-calendar__selector-panel', showSelectorPanel && 'visible');
     let selectorPanelMonthHtml = LOCALE_DATA.months.map((item: string, key: string) => {
       let itemMonth: number = Number(key) + 1;
       const numberMonth = Number(pickedYearMonth.month);
-      let monthItemClass = cx('react-datetime-range-dropdown-calendar__month-item', itemMonth === numberMonth && 'active');
+      let monthItemClass = cx('react-date-timeframe-picker-dropdown-calendar__month-item', itemMonth === numberMonth && 'active');
       let month = itemMonth - 1;
       let direction = NEXT_TRANSITION;
       if (itemMonth < numberMonth) {
@@ -285,7 +285,7 @@ const Index: React.FC<IndexProps> = memo(
     if (yearSelectorPanelList.length) {
       selectorPanelYearHtml = yearSelectorPanelList.map((item, key) => {
         const numberYearMonth = Number(pickedYearMonth.year);
-        let yearItemClass = cx('react-datetime-range-dropdown-calendar__year-item', item === numberYearMonth && 'active');
+        let yearItemClass = cx('react-date-timeframe-picker-dropdown-calendar__year-item', item === numberYearMonth && 'active');
         let year = item - 1;
         let direction = NEXT_TRANSITION;
         if (item < numberYearMonth) {
@@ -311,13 +311,13 @@ const Index: React.FC<IndexProps> = memo(
     }
     const classNames = direction == NEXT_TRANSITION ? 'forward' : 'backward';
     return (
-      <div className={`react-datetime-range-calendar`}>
-        <div className={`react-datetime-range-calendar__header`}>
+      <div className={`react-date-timeframe-picker-calendar`}>
+        <div className={`react-date-timeframe-picker-calendar__header`}>
           <div className={selectorPanelClass} ref={$monthSelectorPanel} onMouseDown={onMouseDown} onMouseUp={onMouseUp} onTouchEnd={onMouseDown} onTouchCancel={onMouseUp}>
-            <div className={`react-datetime-range-dropdown-calendar__menu`}>
-              <div className={`react-datetime-range-dropdown-calendar__month`}>{selectorPanelMonthHtml}</div>
+            <div className={`react-date-timeframe-picker-dropdown-calendar__menu`}>
+              <div className={`react-date-timeframe-picker-dropdown-calendar__month`}>{selectorPanelMonthHtml}</div>
               <div style={{ height: '10px' }} />
-              <div className={`react-datetime-range__col react-datetime-range__col-0-5`}>
+              <div className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-0-5`}>
                 <svg
                   width="15"
                   height="15"
@@ -329,14 +329,14 @@ const Index: React.FC<IndexProps> = memo(
                   <path d="M0 0h24v24H0z" fill="none" />
                 </svg>
               </div>
-              <div className={`react-datetime-range__col react-datetime-range__col-9`}>
-                <TransitionGroup className="react-datetime-range-calendar__selector-panel-year-set-container" childFactory={child => React.cloneElement(child, { classNames })}>
-                  <CSSTransition key={yearSelectorPanelList.join('-')} timeout={{ enter: 300, exit: 300 }} className={`react-datetime-range-dropdown-calendar__year`} classNames={classNames}>
+              <div className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-9`}>
+                <TransitionGroup className="react-date-timeframe-picker-calendar__selector-panel-year-set-container" childFactory={child => React.cloneElement(child, { classNames })}>
+                  <CSSTransition key={yearSelectorPanelList.join('-')} timeout={{ enter: 300, exit: 300 }} className={`react-date-timeframe-picker-dropdown-calendar__year`} classNames={classNames}>
                     <div>{selectorPanelYearHtml}</div>
                   </CSSTransition>
                 </TransitionGroup>
               </div>
-              <div className={`react-datetime-range__col react-datetime-range__col-0-5`}>
+              <div className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-0-5`}>
                 <svg
                   width="15"
                   height="15"
@@ -350,37 +350,37 @@ const Index: React.FC<IndexProps> = memo(
               </div>
             </div>
           </div>
-          <div className={`react-datetime-range__col react-datetime-range__col-3`}>
-            <div className={`react-datetime-range__col react-datetime-range-calendar__previous`} onClick={() => pickYear(pickedYearMonth.year, PREV_TRANSITION)}>
+          <div className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-3`}>
+            <div className={`react-date-timeframe-picker__col react-date-timeframe-picker-calendar__previous`} onClick={() => pickYear(pickedYearMonth.year, PREV_TRANSITION)}>
               <svg width="15" height="15" viewBox="0 0 24 24">
                 <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z" />
                 <path fill="none" d="M24 24H0V0h24v24z" />
               </svg>
             </div>
-            <div className={`react-datetime-range__col react-datetime-range-calendar__sub-previous`} onClick={() => pickMonth(pickedYearMonth.month, PREV_TRANSITION)}>
+            <div className={`react-date-timeframe-picker__col react-date-timeframe-picker-calendar__sub-previous`} onClick={() => pickMonth(pickedYearMonth.month, PREV_TRANSITION)}>
               <svg width="15" height="15" viewBox="0 0 24 24">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
                 <path d="M0 0h24v24H0z" fill="none" />
               </svg>
             </div>
           </div>
-          <div className={`react-datetime-range__col react-datetime-range__col-6`}>
-            <TransitionGroup className="react-datetime-range-calendar__title-container" childFactory={child => React.cloneElement(child, { classNames })}>
-              <CSSTransition key={pickedYearMonth.string} timeout={{ enter: 300, exit: 300 }} className={`react-datetime-range-calendar__title`} style={{ left: '0' }} classNames={classNames}>
-                <span className={`react-datetime-range-calendar__clicker`} onClick={handleShowSelectorPanel} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
-                  <span className={`react-datetime-range-calendar__clicker`}>{LOCALE_DATA.date_format(LOCALE_DATA.months[Number(pickedYearMonth.month) - 1], pickedYearMonth.year)}</span>
+          <div className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-6`}>
+            <TransitionGroup className="react-date-timeframe-picker-calendar__title-container" childFactory={child => React.cloneElement(child, { classNames })}>
+              <CSSTransition key={pickedYearMonth.string} timeout={{ enter: 300, exit: 300 }} className={`react-date-timeframe-picker-calendar__title`} style={{ left: '0' }} classNames={classNames}>
+                <span className={`react-date-timeframe-picker-calendar__clicker`} onClick={handleShowSelectorPanel} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+                  <span className={`react-date-timeframe-picker-calendar__clicker`}>{LOCALE_DATA.date_format(LOCALE_DATA.months[Number(pickedYearMonth.month) - 1], pickedYearMonth.year)}</span>
                 </span>
               </CSSTransition>
             </TransitionGroup>
           </div>
-          <div className={`react-datetime-range__col react-datetime-range__col-3`}>
-            <div className={`react-datetime-range__col react-datetime-range-calendar__next`} onClick={() => pickMonth(pickedYearMonth.month, NEXT_TRANSITION)}>
+          <div className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-3`}>
+            <div className={`react-date-timeframe-picker__col react-date-timeframe-picker-calendar__next`} onClick={() => pickMonth(pickedYearMonth.month, NEXT_TRANSITION)}>
               <svg width="15" height="15" viewBox="0 0 24 24">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
                 <path d="M0 0h24v24H0z" fill="none" />
               </svg>
             </div>
-            <div className={`react-datetime-range__col react-datetime-range-calendar__sub-next`} onClick={() => pickYear(pickedYearMonth.year, NEXT_TRANSITION)}>
+            <div className={`react-date-timeframe-picker__col react-date-timeframe-picker-calendar__sub-next`} onClick={() => pickYear(pickedYearMonth.year, NEXT_TRANSITION)}>
               <svg width="15" height="15" viewBox="0 0 24 24">
                 <path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z" />
                 <path fill="none" d="M0 0h24v24H0V0z" />
@@ -388,24 +388,24 @@ const Index: React.FC<IndexProps> = memo(
             </div>
           </div>
         </div>
-        <div className={`react-datetime-range-calendar__content`}>
-          <div className={`react-datetime-range-calendar__table`}>
-            <div className={`react-datetime-range-calendar__table-row`}>{captionHtml}</div>
+        <div className={`react-date-timeframe-picker-calendar__content`}>
+          <div className={`react-date-timeframe-picker-calendar__table`}>
+            <div className={`react-date-timeframe-picker-calendar__table-row`}>{captionHtml}</div>
           </div>
-          <TransitionGroup className={`react-datetime-range-calendar__body-container`} style={transitionContainerStyle} childFactory={child => React.cloneElement(child, { classNames })}>
+          <TransitionGroup className={`react-date-timeframe-picker-calendar__body-container`} style={transitionContainerStyle} childFactory={child => React.cloneElement(child, { classNames })}>
             <CSSTransition key={pickedYearMonth.string} timeout={{ enter: 300, exit: 300 }} classNames={classNames}>
               {content}
             </CSSTransition>
           </TransitionGroup>
         </div>
-        <div className={`react-datetime-range-calendar__button react-datetime-range-calendar__today`} onClick={() => reset(true)}>
-          <span className={`react-datetime-range-calendar__inline-span`}>{LOCALE_DATA['today']}</span>
-          <span className={`react-datetime-range-calendar__inline-span react-datetime-range-calendar__icon react-datetime-range-refresh`} />
+        <div className={`react-date-timeframe-picker-calendar__button react-date-timeframe-picker-calendar__today`} onClick={() => reset(true)}>
+          <span className={`react-date-timeframe-picker-calendar__inline-span`}>{LOCALE_DATA['today']}</span>
+          <span className={`react-date-timeframe-picker-calendar__inline-span react-date-timeframe-picker-calendar__icon react-date-timeframe-picker-refresh`} />
         </div>
         {isDefaultDateValid ? (
-          <div className={`react-datetime-range-calendar__button react-datetime-range-calendar__default-day`} onClick={() => reset(false)}>
-            <span className={`react-datetime-range-calendar__inline-span`}>{LOCALE_DATA['reset-date']}</span>
-            <span className={`react-datetime-range-calendar__inline-span react-datetime-range-calendar__icon react-datetime-range-refresh`} />
+          <div className={`react-date-timeframe-picker-calendar__button react-date-timeframe-picker-calendar__default-day`} onClick={() => reset(false)}>
+            <span className={`react-date-timeframe-picker-calendar__inline-span`}>{LOCALE_DATA['reset-date']}</span>
+            <span className={`react-date-timeframe-picker-calendar__inline-span react-date-timeframe-picker-calendar__icon react-date-timeframe-picker-refresh`} />
           </div>
         ) : (
           ``
@@ -453,8 +453,8 @@ const CalendarBody: React.FC<CalendarBodyProps> = memo(({ data = {}, pickedDateI
           }
         }
         const datePickerItemClass = cx(
-          'react-datetime-range-calendar__table-cel',
-          'react-datetime-range-calendar__date-item',
+          'react-date-timeframe-picker-calendar__table-cel',
+          'react-date-timeframe-picker-calendar__date-item',
           isDisabled && 'disabled',
           DATE == item.name && MONTH == item.month && YEAR == item.year && 'today',
           markedDatesHash[`${item.year}-${item.month}-${item.name}`] && 'marked',
@@ -464,12 +464,12 @@ const CalendarBody: React.FC<CalendarBodyProps> = memo(({ data = {}, pickedDateI
       });
     }
     return (
-      <div className={`react-datetime-range-calendar__table-row`} key={key}>
+      <div className={`react-date-timeframe-picker-calendar__table-row`} key={key}>
         {colHtml}
       </div>
     );
   });
-  return <div className={`react-datetime-range-calendar__table slide`}>{content}</div>;
+  return <div className={`react-date-timeframe-picker-calendar__table slide`}>{content}</div>;
 });
 interface CalendarItemProps {
   item?: IObjectKeysAny;
@@ -495,9 +495,9 @@ const CalendarItem: React.FC<CalendarItemProps> = memo(({ item = {}, isPicked = 
     >
       {item.name}
       {isPicked && (
-        <svg className="react-datetime-range-check" width="15" height="15" viewBox="0 0 24 24">
+        <svg className="react-date-timeframe-picker-check" width="15" height="15" viewBox="0 0 24 24">
           <path d="M0 0h24v24H0z" fill="none" />
-          <path className="react-datetime-range-check__path" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+          <path className="react-date-timeframe-picker-check__path" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
         </svg>
       )}
     </div>

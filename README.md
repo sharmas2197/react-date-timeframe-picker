@@ -1,4 +1,4 @@
-# react-datetime-range
+# react-date-timeframe-picker
 
 # Docs Link
 [Custom Locale Guide(can be multiple locales)](#custom-locale)
@@ -13,7 +13,7 @@
 
 # Installation
 ```sh
-npm install react-datetime-range --save
+npm install react-date-timeframe-picker --save
 ```
 
 # Browser support
@@ -22,8 +22,8 @@ Tested on IE9+ and Chrome and Safari(10.0.3)
 # Docs
 
 ```js
-import { CalendarPicker, RangePicker } from 'react-datetime-range';
-import 'react-datetime-range/lib/react-datetime-range.min.css';
+import { CalendarPicker, RangePicker } from 'react-date-timeframe-picker';
+import 'react-date-timeframe-picker/lib/react-date-timeframe-picker.min.css';
 
 <RangePicker
   locale="en-us"// ['en-us', 'zh-cn','ko-kr']; default is en-us

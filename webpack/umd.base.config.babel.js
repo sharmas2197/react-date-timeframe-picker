@@ -3,7 +3,7 @@ const path = require('path');
 const PATH = require('./build_path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-let libraryName = 'react-datetime-range';
+let libraryName = 'react-date-timeframe-picker';
 
 let plugins = [],
   outputFile;

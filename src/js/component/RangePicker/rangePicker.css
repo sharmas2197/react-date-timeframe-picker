@@ -3,12 +3,12 @@
   --item-height: 25px;
 }
 
-.react-datetime-range-calendar--range {
+.react-date-timeframe-picker-calendar--range {
   display: inline-block;
   vertical-align: top;
 }
 
-.react-datetime-range {
+.react-date-timeframe-picker {
   opacity: 0;
   position: relative;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.1), 0 0 4px 0 rgba(0, 0, 0, 0.08);
@@ -19,30 +19,30 @@
   background-color: #fff;
 }
 
-.react-datetime-range.visible {
+.react-date-timeframe-picker.visible {
   z-index: 1;
   opacity: 1;
   transform: translateY(0) perspective(600px) rotateX(0);
 }
 
-.react-datetime-range__calendar {
+.react-date-timeframe-picker__calendar {
   display: inline-block;
   vertical-align: top;
   margin-bottom: 40px;
   position: relative;
 }
 
-.react-datetime-range__calendar:before {
+.react-date-timeframe-picker__calendar:before {
   content: '';
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
 
-.react-datetime-range__calendar {
+.react-date-timeframe-picker__calendar {
 }
 
-.react-datetime-range__close {
+.react-date-timeframe-picker__close {
   cursor: pointer;
   position: absolute;
   top: 10px;
@@ -50,11 +50,11 @@
   color: #adb5bd;
 }
 
-.react-datetime-range__clear.disabled {
+.react-date-timeframe-picker__clear.disabled {
   cursor: not-allowed;
 }
 
-.react-datetime-range__clear {
+.react-date-timeframe-picker__clear {
   cursor: pointer;
   position: absolute;
   right: 2%;
@@ -64,7 +64,7 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .react-datetime-range-calendar--range {
+  .react-date-timeframe-picker-calendar--range {
     display: block;
   }
   .react-minimal-datetime-date-piker__divider {
@@ -74,11 +74,11 @@
 
 /* dropdown section */
 
-.react-datetime-range-dropdown {
+.react-date-timeframe-picker-dropdown {
   position: relative;
 }
 
-.react-datetime-range-dropdown.visible .react-datetime-range-dropdown-calendar__menu {
+.react-date-timeframe-picker-dropdown.visible .react-date-timeframe-picker-dropdown-calendar__menu {
   transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1);
   transform: translate(-50%, 0) scale(1, 1) \9;
   opacity: 1;
@@ -86,11 +86,11 @@
   z-index: 1000;
 }
 
-.react-datetime-range-dropdown.visible .react-datetime-range-dropdown-calendar__menu-no-effect {
+.react-date-timeframe-picker-dropdown.visible .react-date-timeframe-picker-dropdown-calendar__menu-no-effect {
   display: block;
 }
 
-.react-datetime-range-dropdown .react-datetime-range-dropdown-calendar__menu {
+.react-date-timeframe-picker-dropdown .react-date-timeframe-picker-dropdown-calendar__menu {
   will-change: transform, opacity;
   transform: translate3d(-50%, 0, 0) scale3d(1, 0, 1);
   transform: translate(-50%, 0) scale(1, 0) \9;
@@ -107,13 +107,13 @@
   background-color: #fff;
 }
 
-.react-datetime-range-dropdown .react-datetime-range-dropdown-calendar__container {
+.react-date-timeframe-picker-dropdown .react-date-timeframe-picker-dropdown-calendar__container {
   border-radius: 3px;
   overflow: hidden;
   margin-top: 10px;
 }
 
-.react-datetime-range-dropdown .react-datetime-range-dropdown-calendar__item {
+.react-date-timeframe-picker-dropdown .react-date-timeframe-picker-dropdown-calendar__item {
   padding: 1px 4px;
   line-height: 20px;
   transition: background-color 0.4s;
@@ -121,7 +121,7 @@
   display: block;
 }
 
-.react-datetime-range-dropdown-calendar__month {
+.react-date-timeframe-picker-dropdown-calendar__month {
   background-color: #fff;
   zoom: 1;
 
@@ -133,14 +133,14 @@
   }
 }
 
-.react-datetime-range-dropdown-calendar__month-item {
+.react-date-timeframe-picker-dropdown-calendar__month-item {
   background-color: #fff;
   cursor: pointer;
   float: left;
   width: 33.3%;
 }
 
-.react-datetime-range-dropdown-calendar__month-item > div {
+.react-date-timeframe-picker-dropdown-calendar__month-item > div {
   padding: 10px 0;
   padding: 10px 2px;
   font-size: 12px;
@@ -154,20 +154,20 @@
   }
 }
 
-.react-datetime-range-dropdown-calendar__month-item.active > div {
+.react-date-timeframe-picker-dropdown-calendar__month-item.active > div {
   background-color: #339af0;
   color: #fff;
 }
 
-.react-datetime-range-calendar__previous,
-.react-datetime-range-calendar__next {
+.react-date-timeframe-picker-calendar__previous,
+.react-date-timeframe-picker-calendar__next {
 }
 
-.react-datetime-range-dropdown .react-datetime-range-dropdown-calendar__item:hover {
+.react-date-timeframe-picker-dropdown .react-date-timeframe-picker-dropdown-calendar__item:hover {
   background-color: #eee;
 }
 
-.react-datetime-range-dropdown-calendar__year {
+.react-date-timeframe-picker-dropdown-calendar__year {
   position: absolute;
   overflow: hidden;
   width: 100%;
@@ -175,7 +175,7 @@
   background-color: #fff;
 }
 
-.react-datetime-range-dropdown-calendar__year-item {
+.react-date-timeframe-picker-dropdown-calendar__year-item {
   background-color: #fff;
   cursor: pointer;
   float: left;
@@ -184,7 +184,7 @@
   width: 20%;
 }
 
-.react-datetime-range-dropdown-calendar__year-item > span {
+.react-date-timeframe-picker-dropdown-calendar__year-item > span {
   height: 100%;
   display: table-cell;
   vertical-align: middle;
@@ -200,42 +200,42 @@
   }
 }
 
-.react-datetime-range-dropdown-calendar__year-item.active > span {
+.react-date-timeframe-picker-dropdown-calendar__year-item.active > span {
   background-color: #339af0;
   color: #fff;
 }
 
 /* end of dropdown section */
 
-.react-datetime-range-calendar__default-day,
-.react-datetime-range-calendar__today {
+.react-date-timeframe-picker-calendar__default-day,
+.react-date-timeframe-picker-calendar__today {
   font-size: 12px;
   margin-top: 10px;
 }
 
-.react-datetime-range-calendar__today {
+.react-date-timeframe-picker-calendar__today {
   left: 0;
 }
 
-.react-datetime-range-calendar__default-day {
+.react-date-timeframe-picker-calendar__default-day {
   right: 0;
 }
 
-.react-datetime-range-calendar__default-day .react-datetime-range-calendar__icon,
-.react-datetime-range-calendar__today .react-datetime-range-calendar__icon {
+.react-date-timeframe-picker-calendar__default-day .react-date-timeframe-picker-calendar__icon,
+.react-date-timeframe-picker-calendar__today .react-date-timeframe-picker-calendar__icon {
   font-size: 15px;
 }
 
-.react-datetime-range-calendar__clicker {
+.react-date-timeframe-picker-calendar__clicker {
   cursor: pointer;
 }
 
-.react-datetime-range__col {
+.react-date-timeframe-picker__col {
   display: inline-block;
   vertical-align: middle;
 }
 
-.react-datetime-range-calendar__title {
+.react-date-timeframe-picker-calendar__title {
   cursor: pointer;
   width: 100%;
   position: absolute;
@@ -247,52 +247,52 @@
   }
 }
 
-.react-datetime-range-calendar__inline-span span {
+.react-date-timeframe-picker-calendar__inline-span span {
   display: inline-block;
   vertical-align: middle;
 }
 
-.react-datetime-range-calendar__inline-span:before {
+.react-date-timeframe-picker-calendar__inline-span:before {
   content: '';
   display: inline-block;
   height: 100%;
   vertical-align: middle;
 }
 
-.react-datetime-range-calendar__content {
+.react-date-timeframe-picker-calendar__content {
 }
 
-.react-datetime-range-calendar__icon {
+.react-date-timeframe-picker-calendar__icon {
   cursor: pointer;
   font-size: 20px;
 }
 
-.react-datetime-range__col-0-5 {
+.react-date-timeframe-picker__col-0-5 {
   width: 5%;
 }
 
-.react-datetime-range__col-9 {
+.react-date-timeframe-picker__col-9 {
   width: 90%;
 }
 
-.react-datetime-range__col-3 {
+.react-date-timeframe-picker__col-3 {
   width: 25%;
 }
 
-.react-datetime-range__col-6 {
+.react-date-timeframe-picker__col-6 {
   width: 50%;
 }
 
-.react-datetime-range-calendar__header {
+.react-date-timeframe-picker-calendar__header {
   text-align: center;
 }
 
-.react-datetime-range--inline-block {
+.react-date-timeframe-picker--inline-block {
   display: inline-block;
   vertical-align: middle;
 }
 
-.react-datetime-range-calendar__table {
+.react-date-timeframe-picker-calendar__table {
   display: table;
   border-collapse: collapse;
   border-collapse: initial !important;
@@ -300,22 +300,22 @@
 }
 
 @media all and (-ms-high-contrast: none) {
-  .react-datetime-range-calendar__table {
+  .react-date-timeframe-picker-calendar__table {
     border-collapse: initial;
   }
 }
 
 @supports (-ms-ime-align: auto) {
-  .react-datetime-range-calendar__table {
+  .react-date-timeframe-picker-calendar__table {
     border-collapse: initial;
   }
 }
 
-.react-datetime-range-calendar__table-row {
+.react-date-timeframe-picker-calendar__table-row {
   display: table-row;
 }
 
-.react-datetime-range-calendar__table-cel {
+.react-date-timeframe-picker-calendar__table-cel {
   font-size: 12px;
   display: table-cell;
   text-align: center;
@@ -373,7 +373,7 @@
     border: 1px solid transparent;
   }
 
-  &.react-datetime-range-calendar__date-item {
+  &.react-date-timeframe-picker-calendar__date-item {
     position: relative;
 
     &:not(.disabled) {
@@ -386,7 +386,7 @@
     }
   }
 
-  &.react-datetime-range-calendar__date-item .react-datetime-range-calendar__icon {
+  &.react-date-timeframe-picker-calendar__date-item .react-date-timeframe-picker-calendar__icon {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -394,11 +394,11 @@
   }
 }
 
-.react-datetime-range-calendar__table-caption {
+.react-date-timeframe-picker-calendar__table-caption {
   color: var(--oc-gray-7);
 }
 
-.react-datetime-range-calendar__mask {
+.react-date-timeframe-picker-calendar__mask {
   opacity: 0;
   filter: alpha(opacity=0);
   position: absolute;
@@ -417,27 +417,27 @@
   }
 }
 
-.react-datetime-range-check {
+.react-date-timeframe-picker-check {
   position: absolute;
   right: 0px;
   bottom: 0px;
   font-size: 12px;
 }
 
-.react-datetime-range__icon-fill {
+.react-date-timeframe-picker__icon-fill {
   fill: var(--oc-gray-8);
 }
 
-.today.active .react-datetime-range-check__path {
+.today.active .react-date-timeframe-picker-check__path {
   fill: #fc7474;
 }
 
-.active .react-datetime-range-check__path,
-.today:hover .react-datetime-range-check__path {
+.active .react-date-timeframe-picker-check__path,
+.today:hover .react-date-timeframe-picker-check__path {
   fill: #fff;
 }
 
-.react-datetime-range-calendar__button {
+.react-date-timeframe-picker-calendar__button {
   position: absolute;
   bottom: -40px;
   display: inline-block;
@@ -489,7 +489,7 @@
   }
 }
 
-.react-datetime-range-calendar__title-container {
+.react-date-timeframe-picker-calendar__title-container {
   position: relative;
   display: block;
   height: 18px;
@@ -498,7 +498,7 @@
   text-align: center;
 }
 
-.react-datetime-range-calendar__selector-panel-year-set-container {
+.react-date-timeframe-picker-calendar__selector-panel-year-set-container {
   position: relative;
   display: block;
   height: 24px;
@@ -508,7 +508,7 @@
   margin: 0 auto;
 }
 
-.react-datetime-range-calendar__body-container {
+.react-date-timeframe-picker-calendar__body-container {
   position: relative;
   display: block;
   transition: height 0.3s;
@@ -574,7 +574,7 @@
   transform: translateX(100%);
 }
 
-.react-datetime-range__range-input-wrapper {
+.react-date-timeframe-picker__range-input-wrapper {
   width: 100%;
   height: 32px;
   position: relative;
@@ -587,18 +587,18 @@
   transition: all 0.3s;
 }
 
-.react-datetime-range__range-input-wrapper.disabled {
+.react-date-timeframe-picker__range-input-wrapper.disabled {
   border: 1px solid #ccc;
   color: #ccc;
   background: #f8f8f8;
   cursor: not-allowed;
 }
 
-.react-datetime-range__range-input-wrapper input.react-datetime-range__range-input.disabled {
+.react-date-timeframe-picker__range-input-wrapper input.react-date-timeframe-picker__range-input.disabled {
   cursor: not-allowed;
 }
 
-.react-datetime-range__range-input-wrapper input.react-datetime-range__range-input {
+.react-date-timeframe-picker__range-input-wrapper input.react-date-timeframe-picker__range-input {
   border: none;
   width: 44%;
   height: 95%;
@@ -607,7 +607,7 @@
   outline: 0;
 }
 
-.react-datetime-range__range-input-wrapper .react-datetime-range__range-input-separator {
+.react-date-timeframe-picker__range-input-wrapper .react-date-timeframe-picker__range-input-separator {
   display: inline-block;
   min-width: 10px;
   white-space: nowrap;
@@ -616,15 +616,15 @@
   vertical-align: middle;
 }
 
-.react-datetime-range__range .react-datetime-range {
+.react-date-timeframe-picker__range .react-date-timeframe-picker {
   position: absolute;
 }
 
-.react-datetime-range__button-wrapper {
+.react-date-timeframe-picker__button-wrapper {
   text-align: right;
 }
 
-.react-datetime-range__button {
+.react-date-timeframe-picker__button {
   font-size: 12px;
   cursor: pointer;
   display: inline-block;
@@ -633,7 +633,7 @@
   border-radius: 4px;
 }
 
-.react-datetime-range__button--type {
+.react-date-timeframe-picker__button--type {
   color: #74c0fc;
 
   &.disabled {
@@ -642,7 +642,7 @@
   }
 }
 
-.react-datetime-range__button--confirm {
+.react-date-timeframe-picker__button--confirm {
   background-color: #74c0fc;
   color: #fff;
   border: 1px solid #4dabf7;
@@ -664,7 +664,7 @@
   width: 20px;
 }
 
-.react-datetime-range__time-piker {
+.react-date-timeframe-picker__time-piker {
   position: absolute;
   left: 0;
   right: 0;
@@ -673,11 +673,11 @@
   background-color: #fff;
 }
 
-.react-datetime-range__time-select-wrapper {
+.react-date-timeframe-picker__time-select-wrapper {
   height: 100%;
 }
 
-.react-datetime-range__date {
+.react-date-timeframe-picker__date {
   display: inline-block;
   margin-bottom: 10px;
   text-align: center;
@@ -687,7 +687,7 @@
   font-weight: 600;
 }
 
-.react-datetime-range__time-select-options-wrapper, .react-datetime-range__time-select-options-wrapper_no-leftbrdr{
+.react-date-timeframe-picker__time-select-options-wrapper, .react-date-timeframe-picker__time-select-options-wrapper_no-leftbrdr{
   height: 83%;
   display: inline-block;
   width: 24.5%;
@@ -695,29 +695,29 @@
   overflow: hidden;
 }
 
-.react-datetime-range__time-select-options-header{
+.react-date-timeframe-picker__time-select-options-header{
   border-bottom: 1px solid #f2f2f2;
   font-weight: 600;
   padding: 5px 0px;
 }
-.react-datetime-range__time-select-options{
+.react-date-timeframe-picker__time-select-options{
   overflow-y: auto;
   height: 100%;
 }
 
-.react-datetime-range__time-select-options-wrapper_no-leftbrdr{
+.react-date-timeframe-picker__time-select-options-wrapper_no-leftbrdr{
   border-left: 0 !important;
 }
 
-.react-datetime-range__time-select-wrapper--single {
+.react-date-timeframe-picker__time-select-wrapper--single {
   text-align: center;
 }
 
-.react-datetime-range__time-select-wrapper--single .react-datetime-range__time-select-options-wrapper {
+.react-date-timeframe-picker__time-select-wrapper--single .react-date-timeframe-picker__time-select-options-wrapper {
   width: 50%;
 }
 
-.react-datetime-range__time-select-option {
+.react-date-timeframe-picker__time-select-option {
   padding: 2 5px;
   cursor: pointer;
 
