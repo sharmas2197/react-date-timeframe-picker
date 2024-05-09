@@ -16,8 +16,7 @@
     "date-picker",
     "timepicker",
     "time-picker",
-    "calendar",
-    "react-daterange-picker"
+    "calendar"
   ],
   "author": "Shagun Sharma",
   "scripts": {
