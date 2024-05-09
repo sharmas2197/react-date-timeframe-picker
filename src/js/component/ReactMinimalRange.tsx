@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo, useCallback, memo } from '
 import { cx, isValidDate } from './utils';
 import LOCALE from './locale';
 import Calendar from './Calendar';
-import './react-date-timeframe-picker.css';
+import './react-calendar-range-picker.css';
 const DEFAULT_LACALE = 'en-us';
 interface IObjectKeysAny {
   [key: string]: any;
@@ -195,15 +195,15 @@ const CalendarPickerComponent: React.FC<CalendarPickerComponentProps> = memo(
         setType(TYPES[0]);
       }
     }, [type]);
-    const componentClass = useMemo(() => cx('react-date-timeframe-picker', internalShow && 'visible'), [internalShow]);
+    const componentClass = useMemo(() => cx('react-calendar-range-picker', internalShow && 'visible'), [internalShow]);
     const LOCALE_DATA: IObjectKeysAny = useMemo(() => (LOCALE[locale] ? LOCALE[locale] : LOCALE['en-us']), [locale]);
     return (
       <div className={componentClass}>
-        <svg className="react-date-timeframe-picker__close" viewBox="0 0 20 20" width="15" height="15" onClick={handleOnClose}>
+        <svg className="react-calendar-range-picker__close" viewBox="0 0 20 20" width="15" height="15" onClick={handleOnClose}>
           <path d="M10.185,1.417c-4.741,0-8.583,3.842-8.583,8.583c0,4.74,3.842,8.582,8.583,8.582S18.768,14.74,18.768,10C18.768,5.259,14.926,1.417,10.185,1.417 M10.185,17.68c-4.235,0-7.679-3.445-7.679-7.68c0-4.235,3.444-7.679,7.679-7.679S17.864,5.765,17.864,10C17.864,14.234,14.42,17.68,10.185,17.68 M10.824,10l2.842-2.844c0.178-0.176,0.178-0.46,0-0.637c-0.177-0.178-0.461-0.178-0.637,0l-2.844,2.841L7.341,6.52c-0.176-0.178-0.46-0.178-0.637,0c-0.178,0.176-0.178,0.461,0,0.637L9.546,10l-2.841,2.844c-0.178,0.176-0.178,0.461,0,0.637c0.178,0.178,0.459,0.178,0.637,0l2.844-2.841l2.844,2.841c0.178,0.178,0.459,0.178,0.637,0c0.178-0.176,0.178-0.461,0-0.637L10.824,10z" />
         </svg>
         <div className={`react-minimal-datetime-date-piker`}>
-          <div className={`react-date-timeframe-picker__calendar`}>
+          <div className={`react-calendar-range-picker__calendar`}>
             <Calendar
               defaultDate={defaultDate}
               locale={locale}
@@ -217,7 +217,7 @@ const CalendarPickerComponent: React.FC<CalendarPickerComponentProps> = memo(
             />
           </div>
           {type === TYPES[1] && (
-            <div className="react-date-timeframe-picker__time-piker" style={{ marginTop: '10px' }}>
+            <div className="react-calendar-range-picker__time-piker" style={{ marginTop: '10px' }}>
               {/* <RangeTime
                 startDatePickedArray={startDatePickedArray}
                 handleChooseStartTimeHour={handleChooseStartTimeHour}
@@ -232,7 +232,7 @@ const CalendarPickerComponent: React.FC<CalendarPickerComponentProps> = memo(
         </div>
         {enableTimeSelection && (
           <div
-            className={cx('react-date-timeframe-picker__button', 'react-date-timeframe-picker__button--type', !selected && 'disabled')}
+            className={cx('react-calendar-range-picker__button', 'react-calendar-range-picker__button--type', !selected && 'disabled')}
             onClick={selected ? handleOnChangeType : () => {}}
             style={{ padding: '0', marginTop: '10px' }}
           >

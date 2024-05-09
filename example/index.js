@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import prefixAll from "inline-style-prefix-all";
 import "../src/css/example.css";
 import { CalendarPicker, RangePicker } from "../src/js/component/index";
-import "../src/js/component/react-date-timeframe-picker.css";
+import "../src/js/component/react-calendar-range-picker.css";
 const now = new Date();
 const todayY = now.getFullYear();
 const todayM = now.getMonth() + 1;

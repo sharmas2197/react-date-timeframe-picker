@@ -419,7 +419,7 @@ const Index: React.FC<IndexProps> = memo(
     const captionHtml = LOCALE_DATA.weeks.map((item: string, key: string) => {
       return (
         <div
-          className={`react-date-timeframe-picker-calendar__table-caption react-date-timeframe-picker-calendar__table-cel no-border`}
+          className={`react-calendar-range-picker-calendar__table-caption react-calendar-range-picker-calendar__table-cel no-border`}
           key={key}
         >
           {item}
@@ -427,8 +427,8 @@ const Index: React.FC<IndexProps> = memo(
       );
     });
     let selectorPanelClass = cx(
-      "react-date-timeframe-picker-dropdown",
-      "react-date-timeframe-picker-calendar__selector-panel",
+      "react-calendar-range-picker-dropdown",
+      "react-calendar-range-picker-calendar__selector-panel",
       showSelectorPanel && "visible"
     );
     let selectorPanelMonthHtml = LOCALE_DATA.months.map(
@@ -436,7 +436,7 @@ const Index: React.FC<IndexProps> = memo(
         let itemMonth: number = Number(key) + 1;
         const numberMonth = Number(pickedYearMonth.month);
         let monthItemClass = cx(
-          "react-date-timeframe-picker-dropdown-calendar__month-item",
+          "react-calendar-range-picker-dropdown-calendar__month-item",
           itemMonth == numberMonth && "active"
         );
         let month = itemMonth - 1;
@@ -467,7 +467,7 @@ const Index: React.FC<IndexProps> = memo(
       selectorPanelYearHtml = yearSelectorPanelList.map((item, key) => {
         const numberYearMonth = Number(pickedYearMonth.year);
         let yearItemClass = cx(
-          "react-date-timeframe-picker-dropdown-calendar__year-item",
+          "react-calendar-range-picker-dropdown-calendar__year-item",
           item == numberYearMonth && "active"
         );
         let year = item - 1;
@@ -497,11 +497,11 @@ const Index: React.FC<IndexProps> = memo(
     return (
       <div
         className={cx(
-          "react-date-timeframe-picker-calendar",
-          "react-date-timeframe-picker-calendar--range"
+          "react-calendar-range-picker-calendar",
+          "react-calendar-range-picker-calendar--range"
         )}
       >
-        <div className={`react-date-timeframe-picker-calendar__header`}>
+        <div className={`react-calendar-range-picker-calendar__header`}>
           <div
             className={selectorPanelClass}
             ref={$monthSelectorPanel}
@@ -511,16 +511,16 @@ const Index: React.FC<IndexProps> = memo(
             onTouchCancel={onMouseUp}
           >
             <div
-              className={`react-date-timeframe-picker-dropdown-calendar__menu`}
+              className={`react-calendar-range-picker-dropdown-calendar__menu`}
             >
               <div
-                className={`react-date-timeframe-picker-dropdown-calendar__month`}
+                className={`react-calendar-range-picker-dropdown-calendar__month`}
               >
                 {selectorPanelMonthHtml}
               </div>
               <div style={{ height: "10px" }} />
               <div
-                className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-0-5`}
+                className={`react-calendar-range-picker__col react-calendar-range-picker__col-0-5`}
               >
                 <svg
                   width="15"
@@ -539,10 +539,10 @@ const Index: React.FC<IndexProps> = memo(
                 </svg>
               </div>
               <div
-                className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-9`}
+                className={`react-calendar-range-picker__col react-calendar-range-picker__col-9`}
               >
                 <TransitionGroup
-                  className="react-date-timeframe-picker-calendar__selector-panel-year-set-container"
+                  className="react-calendar-range-picker-calendar__selector-panel-year-set-container"
                   childFactory={(child) =>
                     React.cloneElement(child, { classNames })
                   }
@@ -550,7 +550,7 @@ const Index: React.FC<IndexProps> = memo(
                   <CSSTransition
                     key={yearSelectorPanelList.join("-")}
                     timeout={{ enter: 300, exit: 300 }}
-                    className={`react-date-timeframe-picker-dropdown-calendar__year`}
+                    className={`react-calendar-range-picker-dropdown-calendar__year`}
                     classNames={classNames}
                   >
                     <div>{selectorPanelYearHtml}</div>
@@ -558,7 +558,7 @@ const Index: React.FC<IndexProps> = memo(
                 </TransitionGroup>
               </div>
               <div
-                className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-0-5`}
+                className={`react-calendar-range-picker__col react-calendar-range-picker__col-0-5`}
               >
                 <svg
                   width="15"
@@ -579,11 +579,11 @@ const Index: React.FC<IndexProps> = memo(
             </div>
           </div>
           <div
-            className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-3`}
+            className={`react-calendar-range-picker__col react-calendar-range-picker__col-3`}
           >
             {showPrevYearArrow && (
               <div
-                className={`react-date-timeframe-picker__col react-date-timeframe-picker-calendar__previous`}
+                className={`react-calendar-range-picker__col react-calendar-range-picker-calendar__previous`}
                 onClick={() => pickYear(pickedYearMonth.year, PREV_TRANSITION)}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24">
@@ -594,7 +594,7 @@ const Index: React.FC<IndexProps> = memo(
             )}
             {showPrevMonthArrow && (
               <div
-                className={`react-date-timeframe-picker__col react-date-timeframe-picker-calendar__sub-previous`}
+                className={`react-calendar-range-picker__col react-calendar-range-picker-calendar__sub-previous`}
                 onClick={() =>
                   pickMonth(pickedYearMonth.month, PREV_TRANSITION)
                 }
@@ -607,10 +607,10 @@ const Index: React.FC<IndexProps> = memo(
             )}
           </div>
           <div
-            className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-6`}
+            className={`react-calendar-range-picker__col react-calendar-range-picker__col-6`}
           >
             <TransitionGroup
-              className="react-date-timeframe-picker-calendar__title-container"
+              className="react-calendar-range-picker-calendar__title-container"
               childFactory={(child) =>
                 React.cloneElement(child, { classNames })
               }
@@ -618,18 +618,18 @@ const Index: React.FC<IndexProps> = memo(
               <CSSTransition
                 key={pickedYearMonth.string}
                 timeout={{ enter: 300, exit: 300 }}
-                className={`react-date-timeframe-picker-calendar__title`}
+                className={`react-calendar-range-picker-calendar__title`}
                 style={{ left: "0" }}
                 classNames={classNames}
               >
                 <span
-                  className={`react-date-timeframe-picker-calendar__clicker`}
+                  className={`react-calendar-range-picker-calendar__clicker`}
                   onClick={handleShowSelectorPanel}
                   onMouseDown={onMouseDown}
                   onMouseUp={onMouseUp}
                 >
                   <span
-                    className={`react-date-timeframe-picker-calendar__clicker`}
+                    className={`react-calendar-range-picker-calendar__clicker`}
                   >
                     {LOCALE_DATA.date_format(
                       LOCALE_DATA.months[Number(pickedYearMonth.month) - 1],
@@ -641,11 +641,11 @@ const Index: React.FC<IndexProps> = memo(
             </TransitionGroup>
           </div>
           <div
-            className={`react-date-timeframe-picker__col react-date-timeframe-picker__col-3`}
+            className={`react-calendar-range-picker__col react-calendar-range-picker__col-3`}
           >
             {showNextMonthArrow && (
               <div
-                className={`react-date-timeframe-picker__col react-date-timeframe-picker-calendar__next`}
+                className={`react-calendar-range-picker__col react-calendar-range-picker-calendar__next`}
                 onClick={() =>
                   pickMonth(pickedYearMonth.month, NEXT_TRANSITION)
                 }
@@ -658,7 +658,7 @@ const Index: React.FC<IndexProps> = memo(
             )}
             {showNextYearArrow && (
               <div
-                className={`react-date-timeframe-picker__col react-date-timeframe-picker-calendar__sub-next`}
+                className={`react-calendar-range-picker__col react-calendar-range-picker-calendar__sub-next`}
                 onClick={() => pickYear(pickedYearMonth.year, NEXT_TRANSITION)}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24">
@@ -669,14 +669,14 @@ const Index: React.FC<IndexProps> = memo(
             )}
           </div>
         </div>
-        <div className={`react-date-timeframe-picker-calendar__content`}>
-          <div className={`react-date-timeframe-picker-calendar__table`}>
-            <div className={`react-date-timeframe-picker-calendar__table-row`}>
+        <div className={`react-calendar-range-picker-calendar__content`}>
+          <div className={`react-calendar-range-picker-calendar__table`}>
+            <div className={`react-calendar-range-picker-calendar__table-row`}>
               {captionHtml}
             </div>
           </div>
           <TransitionGroup
-            className={`react-date-timeframe-picker-calendar__body-container`}
+            className={`react-calendar-range-picker-calendar__body-container`}
             style={transitionContainerStyle}
             childFactory={(child) => React.cloneElement(child, { classNames })}
           >
@@ -794,8 +794,8 @@ const CalendarBody: React.FC<CalendarBodyProps> = memo(
             }
           }
           const datePickerItemClass = cx(
-            "react-date-timeframe-picker-calendar__table-cel",
-            "react-date-timeframe-picker-calendar__date-item",
+            "react-calendar-range-picker-calendar__table-cel",
+            "react-calendar-range-picker-calendar__date-item",
             "range",
             isDisabled && "disabled",
             isPickedStart && "active",
@@ -828,7 +828,7 @@ const CalendarBody: React.FC<CalendarBodyProps> = memo(
       }
       return (
         <div
-          className={`react-date-timeframe-picker-calendar__table-row`}
+          className={`react-calendar-range-picker-calendar__table-row`}
           key={key}
         >
           {colHtml}
@@ -836,7 +836,7 @@ const CalendarBody: React.FC<CalendarBodyProps> = memo(
       );
     });
     return (
-      <div className={`react-date-timeframe-picker-calendar__table slide`}>
+      <div className={`react-calendar-range-picker-calendar__table slide`}>
         {content}
       </div>
     );

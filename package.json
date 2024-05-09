@@ -1,5 +1,5 @@
 {
-  "name": "react-date-timeframe-picker",
+  "name": "react-calendar-range-picker",
   "version": "1.0.0",
   "description": "A react component for date time range picker.",
   "main": "index.js",

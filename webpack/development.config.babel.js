@@ -25,7 +25,7 @@ config.plugins.push(
   new MiniCssExtractPlugin({ filename: 'css/[name].css' }),
   new HtmlWebpackPlugin({
     template: PATH.HTML_PATH + '/layout.html',
-    title: 'react-date-timeframe-picker',
+    title: 'react-calendar-range-picker',
     page: 'index',
     filename: 'index.html',
     hash: false,

@@ -36,25 +36,25 @@ const Index: React.FC<IndexProps> = memo(
   }) => {
     if (singleMode) {
       return (
-        <div className="react-date-timeframe-picker__time-select-wrapper react-date-timeframe-picker__time-select-wrapper--single">
+        <div className="react-calendar-range-picker__time-select-wrapper react-calendar-range-picker__time-select-wrapper--single">
           <div>
-            <div className="react-date-timeframe-picker__date">{startDatePickedArray.join('-')}</div>
+            <div className="react-calendar-range-picker__date">{startDatePickedArray.join('-')}</div>
           </div>
-          <div className="react-date-timeframe-picker__time-select-options-wrapper">
+          <div className="react-calendar-range-picker__time-select-options-wrapper">
             {HOURS.map(i => {
               const item = formatDateString(i);
               return (
-                <div key={i} className={cx('react-date-timeframe-picker__time-select-option', item === startTimePickedArray[0] && 'active')} onClick={() => handleChooseStartTimeHour(item)}>
+                <div key={i} className={cx('react-calendar-range-picker__time-select-option', item === startTimePickedArray[0] && 'active')} onClick={() => handleChooseStartTimeHour(item)}>
                   {item}
                 </div>
               );
             })}
           </div>
-          <div className="react-date-timeframe-picker__time-select-options-wrapper">
+          <div className="react-calendar-range-picker__time-select-options-wrapper">
             {MINUTES.map(i => {
               const item = formatDateString(i);
               return (
-                <div key={i} className={cx('react-date-timeframe-picker__time-select-option', item === startTimePickedArray[1] && 'active')} onClick={() => handleChooseStartTimeMinute(item)}>
+                <div key={i} className={cx('react-calendar-range-picker__time-select-option', item === startTimePickedArray[1] && 'active')} onClick={() => handleChooseStartTimeMinute(item)}>
                   {item}
                 </div>
               );
@@ -64,65 +64,65 @@ const Index: React.FC<IndexProps> = memo(
       );
     }
     return (
-      <div className="react-date-timeframe-picker__time-select-wrapper">
+      <div className="react-calendar-range-picker__time-select-wrapper">
         <div>
-          <div className="react-date-timeframe-picker__date">{showOnlyTime ? LOCALE_DATA['start'] : startDatePickedArray.join('-')}</div>
-          <div className="react-date-timeframe-picker__date">{showOnlyTime ? LOCALE_DATA['end'] : endDatePickedArray.join('-')}</div>
+          <div className="react-calendar-range-picker__date">{showOnlyTime ? LOCALE_DATA['start'] : startDatePickedArray.join('-')}</div>
+          <div className="react-calendar-range-picker__date">{showOnlyTime ? LOCALE_DATA['end'] : endDatePickedArray.join('-')}</div>
         </div>
-        <div className="react-date-timeframe-picker__time-select-options-wrapper">
-          <div className='react-date-timeframe-picker__time-select-options-header'>
+        <div className="react-calendar-range-picker__time-select-options-wrapper">
+          <div className='react-calendar-range-picker__time-select-options-header'>
             Hours
           </div>
-          <div className='react-date-timeframe-picker__time-select-options'>
+          <div className='react-calendar-range-picker__time-select-options'>
             {HOURS.map(i => {
               const item = formatDateString(i);
               return (
-                <div key={i} className={cx('react-date-timeframe-picker__time-select-option', item === startTimePickedArray[0] && 'active')} onClick={() => handleChooseStartTimeHour(item)}>
+                <div key={i} className={cx('react-calendar-range-picker__time-select-option', item === startTimePickedArray[0] && 'active')} onClick={() => handleChooseStartTimeHour(item)}>
                   {item}
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="react-date-timeframe-picker__time-select-options-wrapper_no-leftbrdr">
-          <div className='react-date-timeframe-picker__time-select-options-header'>
+        <div className="react-calendar-range-picker__time-select-options-wrapper_no-leftbrdr">
+          <div className='react-calendar-range-picker__time-select-options-header'>
             Minutes
           </div>
-          <div className='react-date-timeframe-picker__time-select-options'>
+          <div className='react-calendar-range-picker__time-select-options'>
             {MINUTES.map(i => {
               const item = formatDateString(i);
               return (
-                <div key={i} className={cx('react-date-timeframe-picker__time-select-option', item === startTimePickedArray[1] && 'active')} onClick={() => handleChooseStartTimeMinute(item)}>
+                <div key={i} className={cx('react-calendar-range-picker__time-select-option', item === startTimePickedArray[1] && 'active')} onClick={() => handleChooseStartTimeMinute(item)}>
                   {item}
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="react-date-timeframe-picker__time-select-options-wrapper_no-leftbrdr">
-          <div className='react-date-timeframe-picker__time-select-options-header'>
+        <div className="react-calendar-range-picker__time-select-options-wrapper_no-leftbrdr">
+          <div className='react-calendar-range-picker__time-select-options-header'>
             Hours
           </div>
-          <div className='react-date-timeframe-picker__time-select-options'>
+          <div className='react-calendar-range-picker__time-select-options'>
             {HOURS.map(i => {
               const item = formatDateString(i);
               return (
-                <div key={i} className={cx('react-date-timeframe-picker__time-select-option', item === endTimePickedArray[0] && 'active')} onClick={() => handleChooseEndTimeHour(item)}>
+                <div key={i} className={cx('react-calendar-range-picker__time-select-option', item === endTimePickedArray[0] && 'active')} onClick={() => handleChooseEndTimeHour(item)}>
                   {item}
                 </div>
               );
             })}
           </div>
         </div>
-        <div className="react-date-timeframe-picker__time-select-options-wrapper_no-leftbrdr">
-          <div className='react-date-timeframe-picker__time-select-options-header'>
+        <div className="react-calendar-range-picker__time-select-options-wrapper_no-leftbrdr">
+          <div className='react-calendar-range-picker__time-select-options-header'>
             Minutes
           </div>
-          <div className='react-date-timeframe-picker__time-select-options'>
+          <div className='react-calendar-range-picker__time-select-options'>
             {MINUTES.map(i => {
               const item = formatDateString(i);
               return (
-                <div key={i} className={cx('react-date-timeframe-picker__time-select-option', item === endTimePickedArray[1] && 'active')} onClick={() => handleChooseEndTimeMinute(item)}>
+                <div key={i} className={cx('react-calendar-range-picker__time-select-option', item === endTimePickedArray[1] && 'active')} onClick={() => handleChooseEndTimeMinute(item)}>
                   {item}
                 </div>
               );

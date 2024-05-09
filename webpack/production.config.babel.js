@@ -9,7 +9,7 @@ const config = {
   mode: 'production',
   devtool: 'cheap-source-map',
   output: {
-    publicPath: '/react-date-timeframe-picker/dist/',
+    publicPath: '/react-calendar-range-picker/dist/',
     filename: '[name]-[chunkhash].js',
   },
   optimization: {
@@ -60,7 +60,7 @@ config.plugins.push(
   new MiniCssExtractPlugin({ filename: 'css/[name]-[hash].css' }),
   new HtmlWebpackPlugin({
     template: PATH.HTML_PATH + '/layout.html',
-    title: 'react-date-timeframe-picker',
+    title: 'react-calendar-range-picker',
     page: 'index',
     filename: '../index.html',
     hash: false,

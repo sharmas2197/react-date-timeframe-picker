@@ -284,9 +284,9 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
       endTimePickedArray,
     ]);
     return (
-      <div className="react-date-timeframe-picker__range" style={style}>
+      <div className="react-calendar-range-picker__range" style={style}>
         <span
-          className={`react-date-timeframe-picker__range-input-wrapper ${
+          className={`react-calendar-range-picker__range-input-wrapper ${
             disabled && "disabled"
           }`}
           onClick={() => !disabled && setInternalShow(!internalShow)}
@@ -294,26 +294,26 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
           <input
             readOnly={true}
             placeholder={placeholder[0]}
-            className={`react-date-timeframe-picker__range-input ${
+            className={`react-calendar-range-picker__range-input ${
               disabled && "disabled"
             }`}
             value={valueStart}
           />
-          <span className="react-date-timeframe-picker__range-input-separator">
+          <span className="react-calendar-range-picker__range-input-separator">
             {" "}
             ~{" "}
           </span>
           <input
             readOnly={true}
             placeholder={placeholder[1]}
-            className={`react-date-timeframe-picker__range-input ${
+            className={`react-calendar-range-picker__range-input ${
               disabled && "disabled"
             }`}
             value={valueEnd}
           />
           {!isInitial && !isEmpty ? (
             <svg
-              className={`react-date-timeframe-picker__clear ${
+              className={`react-calendar-range-picker__clear ${
                 disabled && "disabled"
               }`}
               width="15"
@@ -322,20 +322,20 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
               onClick={handleOnClear}
             >
               <path
-                className="react-date-timeframe-picker__icon-fill"
+                className="react-calendar-range-picker__icon-fill"
                 d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
               />
               <path d="M0 0h24v24H0z" fill="none" />
             </svg>
           ) : (
             <svg
-              className="react-date-timeframe-picker__clear"
+              className="react-calendar-range-picker__clear"
               width="15"
               height="15"
               viewBox="0 0 24 24"
             >
               <path
-                className="react-date-timeframe-picker__icon-fill"
+                className="react-calendar-range-picker__icon-fill"
                 d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"
               />
               <path fill="none" d="M0 0h24v24H0z" />
@@ -456,7 +456,7 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
       }
     }, [show]);
     const componentClass = useMemo(
-      () => cx("react-date-timeframe-picker", internalShow && "visible"),
+      () => cx("react-calendar-range-picker", internalShow && "visible"),
       [internalShow]
     );
     const LOCALE_DATA: IObjectKeysAny = useMemo(
@@ -613,7 +613,7 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
             onChooseDate={onChooseDate}
           />
           {(showOnlyTime || type === TYPES[1]) && (
-            <div className="react-date-timeframe-picker__time-piker">
+            <div className="react-calendar-range-picker__time-piker">
               <RangeTime
                 startDatePickedArray={startDatePickedArray}
                 endDatePickedArray={endDatePickedArray}
@@ -629,12 +629,12 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
             </div>
           )}
         </div>
-        <div className="react-date-timeframe-picker__button-wrapper">
+        <div className="react-calendar-range-picker__button-wrapper">
           {!showOnlyTime && (
             <div
               className={cx(
-                "react-date-timeframe-picker__button",
-                "react-date-timeframe-picker__button--type",
+                "react-calendar-range-picker__button",
+                "react-calendar-range-picker__button--type",
                 !selected && "disabled"
               )}
               onClick={selected ? handleOnChangeType : () => {}}
@@ -646,8 +646,8 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
           )}
           <div
             className={cx(
-              "react-date-timeframe-picker__button",
-              "react-date-timeframe-picker__button--confirm",
+              "react-calendar-range-picker__button",
+              "react-calendar-range-picker__button--confirm",
               !selected && "disabled"
             )}
             onClick={selected ? handleOnConfirmClick : () => {}}
