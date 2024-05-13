@@ -265,6 +265,7 @@
 }
 
 .react-calendar-range-picker-calendar__content {
+  display: block;
 }
 
 .react-calendar-range-picker-calendar__icon {
@@ -303,6 +304,7 @@
   border-collapse: collapse;
   border-collapse: initial !important;
   margin: 0 auto;
+  width: 100%;
 }
 
 @media all and (-ms-high-contrast: none) {
@@ -702,6 +704,7 @@
   width: 24.5%;
   border: 1px solid #f2f2f2;
   overflow: hidden;
+  text-align: center;
 }
 
 .react-calendar-range-picker__time-select-options-header{
