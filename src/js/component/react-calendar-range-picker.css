@@ -779,3 +779,7 @@
 .react-calendar-range-picker__time-select-wrapper-header{
   display: block;
 }
+
+.react-calendar-range-picker__time-select-options::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
