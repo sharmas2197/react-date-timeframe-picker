@@ -67,7 +67,7 @@
   .react-calendar-range-picker-calendar--range {
     display: block;
   }
-  .react-minimal-datetime-date-piker__divider {
+  .react-minimal-datetime-date-picker__divider {
     display: block;
   }
 }
@@ -76,6 +76,7 @@
 
 .react-calendar-range-picker-dropdown {
   position: relative;
+  display: block;
 }
 
 .react-calendar-range-picker-dropdown.visible .react-calendar-range-picker-dropdown-calendar__menu {
@@ -124,6 +125,8 @@
 .react-calendar-range-picker-dropdown-calendar__month {
   background-color: #fff;
   zoom: 1;
+  display: block;
+  border-bottom: 1px solid #f2f2f2;
 
   &:after {
     content: '\200B';
@@ -147,6 +150,7 @@
   margin: 5px;
   background-color: #fff;
   transition: all 0.3s;
+  display: block;
 
   &:hover {
     background-color: #74c0fc;
@@ -173,6 +177,7 @@
   width: 100%;
   height: 100%;
   background-color: #fff;
+  display: block;
 }
 
 .react-calendar-range-picker-dropdown-calendar__year-item {
@@ -285,6 +290,7 @@
 
 .react-calendar-range-picker-calendar__header {
   text-align: center;
+  display: block;
 }
 
 .react-calendar-range-picker--inline-block {
@@ -622,6 +628,7 @@
 
 .react-calendar-range-picker__button-wrapper {
   text-align: right;
+  display: block;
 }
 
 .react-calendar-range-picker__button {
@@ -655,13 +662,13 @@
   }
 }
 
-.react-minimal-datetime-date-piker {
+.react-minimal-datetime-date-picker {
   position: relative;
 }
 
-.react-minimal-datetime-date-piker__divider {
+.react-minimal-datetime-date-picker__divider {
   display: inline-block;
-  width: 20px;
+  width: 30px;
 }
 
 .react-calendar-range-picker__time-piker {
@@ -671,10 +678,12 @@
   top: 0;
   bottom: 0;
   background-color: #fff;
+  display: block;
 }
 
 .react-calendar-range-picker__time-select-wrapper {
   height: 100%;
+  display: block;
 }
 
 .react-calendar-range-picker__date {
@@ -699,10 +708,12 @@
   border-bottom: 1px solid #f2f2f2;
   font-weight: 600;
   padding: 5px 0px;
+  display: block;
 }
 .react-calendar-range-picker__time-select-options{
   overflow-y: auto;
-  height: 100%;
+  height: 87%;
+  display: block;
 }
 
 .react-calendar-range-picker__time-select-options-wrapper_no-leftbrdr{
@@ -718,8 +729,9 @@
 }
 
 .react-calendar-range-picker__time-select-option {
-  padding: 2 5px;
+  padding: 2px 5px;
   cursor: pointer;
+  display: block;
 
   &:hover {
     background-color: #d0ebff;
@@ -745,6 +757,7 @@
 .ranges-selector ul li {
   font-size: 12px;
   list-style-type: none;
+  text-align: left;
 }
 
 .ranges-selector ul li .selector-button {
@@ -755,7 +768,11 @@
   cursor: pointer;
 }
 
-.ranges-selector ul li .active {
+.ranges-selector ul li .active, .ranges-selector ul .active {
   background-color: #339af0;
   color: #fff;
+}
+
+.react-calendar-range-picker__time-select-wrapper-header{
+  display: block;
 }

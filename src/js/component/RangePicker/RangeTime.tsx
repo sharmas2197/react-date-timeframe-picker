@@ -37,7 +37,7 @@ const Index: React.FC<IndexProps> = memo(
     if (singleMode) {
       return (
         <div className="react-calendar-range-picker__time-select-wrapper react-calendar-range-picker__time-select-wrapper--single">
-          <div>
+          <div className='react-calendar-range-picker__time-select-wrapper-header'>
             <div className="react-calendar-range-picker__date">{startDatePickedArray.join('-')}</div>
           </div>
           <div className="react-calendar-range-picker__time-select-options-wrapper">
@@ -65,7 +65,7 @@ const Index: React.FC<IndexProps> = memo(
     }
     return (
       <div className="react-calendar-range-picker__time-select-wrapper">
-        <div>
+        <div className='react-calendar-range-picker__time-select-wrapper-header'>
           <div className="react-calendar-range-picker__date">{showOnlyTime ? LOCALE_DATA['start'] : startDatePickedArray.join('-')}</div>
           <div className="react-calendar-range-picker__date">{showOnlyTime ? LOCALE_DATA['end'] : endDatePickedArray.join('-')}</div>
         </div>

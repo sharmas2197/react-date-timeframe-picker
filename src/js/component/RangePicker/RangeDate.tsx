@@ -518,7 +518,7 @@ const Index: React.FC<IndexProps> = memo(
               >
                 {selectorPanelMonthHtml}
               </div>
-              <div style={{ height: "10px" }} />
+              <div style={{ height: "25px" }} />
               <div
                 className={`react-calendar-range-picker__col react-calendar-range-picker__col-0-5`}
               >

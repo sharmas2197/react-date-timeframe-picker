@@ -10,7 +10,6 @@ import { cx, isValidDates } from "../utils";
 import LOCALE from "../locale";
 import RangeDate from "./RangeDate";
 import RangeTime from "./RangeTime";
-import './rangePicker.css';
 const DEFAULT_LACALE = "en-us";
 import { rangesObj } from "../const";
 
@@ -538,14 +537,14 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
     return (
       <div className={componentClass}>
         <div
-          className="react-minimal-datetime-date-piker"
+          className="react-minimal-datetime-date-picker"
           style={{ display: "flex" }}
         >
           <div className="ranges-selector">
             <ul>
               {Object.entries(rangesObj).map(
                 ([range, [startDate, endDate]]) => (
-                  <li key={range}>
+                  <li key={range} className={`${range === chosenRange ? "active" : ""}`}>
                     <div
                       className={`selector-button ${
                         range === chosenRange ? "active" : ""
@@ -585,7 +584,7 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
             duration={duration}
             onChooseDate={onChooseDate}
           />
-          <div className="react-minimal-datetime-date-piker__divider" />
+          <div className="react-minimal-datetime-date-picker__divider" />
           <RangeDate
             selected={selected}
             setSelected={setSelected}
