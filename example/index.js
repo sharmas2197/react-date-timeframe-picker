@@ -25,6 +25,40 @@ if (!String.prototype.padStart) {
     }
   };
 }
+const customRanges = [
+  {
+    label: "Last Hour",
+    getValue: () => {
+      const end = new Date();
+      const start = new Date(end.getTime() - (60 * 60 * 1000)); // 1 hour ago
+      return [start, end];
+    }
+  },
+  {
+    label: "Last 24 Hours",
+    getValue: () => {
+      const end = new Date();
+      const start = new Date(end.getTime() - (24 * 60 * 60 * 1000)); // 24 hours ago
+      return [start, end];
+    }
+  },
+  {
+    label: "Next 7 Days",
+    getValue: () => {
+      const start = new Date();
+      const end = new Date(start.getTime() + (7 * 24 * 60 * 60 * 1000)); // 7 days ahead
+      return [start, end];
+    }
+  },
+  {
+    label: "Next Month",
+    getValue: () => {
+      const start = new Date();
+      const end = new Date(start.getFullYear(), start.getMonth() + 1, start.getDate());
+      return [start, end];
+    }
+  }
+];
 const Component = () => {
   const $passwordWrapperRef = useRef(null);
   const $pinWrapperRef = useRef(null);
@@ -93,6 +127,7 @@ const Component = () => {
         <div style={prefixAll({ flex: "0 0 50%" })}>
           <div style={{ marginBottom: "10px" }}>
             <RangePicker
+              minDate="2025-01-13"  
               locale={`en-us`} // default is en-us
               show={false} // default is false
               disabled={false} // default is false
@@ -111,6 +146,7 @@ const Component = () => {
               onConfirm={(res) => console.log(res, 1)}
               onClose={() => console.log("closed")}
               style={{ width: "300px", margin: "0 auto" }}
+              customRanges={customRanges}
             />
           </div>
         </div>
