@@ -27,14 +27,6 @@ if (!String.prototype.padStart) {
 }
 const customRanges = [
   {
-    label: "Last Hour",
-    getValue: () => {
-      const end = new Date();
-      const start = new Date(end.getTime() - (60 * 60 * 1000)); // 1 hour ago
-      return [start, end];
-    }
-  },
-  {
     label: "Last 24 Hours",
     getValue: () => {
       const end = new Date();
@@ -47,6 +39,14 @@ const customRanges = [
     getValue: () => {
       const start = new Date();
       const end = new Date(start.getTime() + (7 * 24 * 60 * 60 * 1000)); // 7 days ahead
+      return [start, end];
+    }
+  },
+  {
+    label: "Last 7 Days",
+    getValue: () => {
+      const start = new Date();
+      const end = new Date(start.getTime() - (7 * 24 * 60 * 60 * 1000)); // 7 days ahead
       return [start, end];
     }
   },
@@ -121,13 +121,48 @@ const Component = () => {
       </div>
       
       <div>
-        <h3>RangePicker</h3>
+        <h3>RangePicker with customRange</h3>
       </div>
       <div className={"example-section"}>
         <div style={prefixAll({ flex: "0 0 50%" })}>
           <div style={{ marginBottom: "10px" }}>
             <RangePicker
-              minDate="2025-01-13"  
+              locale={`en-us`} // default is en-us
+              show={false} // default is false
+              disabled={false} // default is false
+              allowPageClickToClose={true} // default is true
+              placeholder={["Start Time", "End Time"]}
+              defaultDates={[
+                year + "-" + month + "-" + date,
+                year + "-" + month + "-" + date,
+              ]} // ['YYYY-MM-DD', 'YYYY-MM-DD']
+              defaultTimes={[hour + ":" + minute, hour + ":" + minute]} // ['hh:mm', 'hh:mm']
+              initialDates={[
+                year + "-" + month + "-" + date,
+                year + "-" + month + "-" + date,
+              ]} // ['YYYY-MM-DD', 'YYYY-MM-DD']
+              initialTimes={[hour + ":" + minute, hour + ":" + minute]} // ['hh:mm', 'hh:mm']
+              onConfirm={(res) => console.log(res, 1)}
+              onClose={() => console.log("closed")}
+              style={{ width: "300px", margin: "0 auto" }}
+              customRanges={customRanges}
+            />
+          </div>
+        </div>
+        <div style={prefixAll({ flex: "0 0 50%" })}>
+          <div style={{ maxWidth: "800px" }}></div>
+        </div>
+      </div>
+
+            
+      <div>
+        <h3>RangePicker with minDate</h3>
+      </div>
+      <div className={"example-section"}>
+        <div style={prefixAll({ flex: "0 0 50%" })}>
+          <div style={{ marginBottom: "10px" }}>
+            <RangePicker
+              minDate="2025-01-13"
               locale={`en-us`} // default is en-us
               show={false} // default is false
               disabled={false} // default is false
