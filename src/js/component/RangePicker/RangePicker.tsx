@@ -125,27 +125,27 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
     );
     const handleChooseStartTimeHour = useCallback(
       (res) => {
-        setStartTimePickedArray([res, startTimePickedArray[1]]);
+        setStartTimePickedArray((prev)=>[res, prev[1]]);
       },
-      [startTimePickedArray]
+      []
     );
     const handleChooseStartTimeMinute = useCallback(
       (res) => {
-        setStartTimePickedArray([startTimePickedArray[0], res]);
+        setStartTimePickedArray((prevArray)=>[prevArray[0],res]);
       },
-      [startTimePickedArray]
+      []
     );
     const handleChooseEndTimeHour = useCallback(
       (res) => {
-        setEndTimePickedArray([res, endTimePickedArray[1]]);
+        setEndTimePickedArray((prevArray) => [res, prevArray[1]]);
       },
-      [endTimePickedArray]
+      []
     );
     const handleChooseEndTimeMinute = useCallback(
       (res) => {
-        setEndTimePickedArray([endTimePickedArray[0], res]);
+        setEndTimePickedArray((prevArray)=>[prevArray[0], res]);
       },
-      [endTimePickedArray]
+      []
     );
     const handleOnChangeType = useCallback(() => {
       if (type === TYPES[0]) {
