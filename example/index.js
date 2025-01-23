@@ -10,6 +10,8 @@ const now = new Date();
 const todayY = now.getFullYear();
 const todayM = now.getMonth() + 1;
 const todayD = now.getDate();
+const currentHour = String(now.getHours()).padStart(2, '0');    // Get current hour
+const currentMinute = String(now.getMinutes()).padStart(2, '0'); // Get current minute
 if (!String.prototype.padStart) {
   String.prototype.padStart = function padStart(targetLength, padString) {
     targetLength = targetLength >> 0; //truncate if number, or convert non-number to 0;
@@ -57,6 +59,22 @@ const customRanges = [
       const end = new Date(start.getFullYear(), start.getMonth() + 1, start.getDate());
       return [start, end];
     }
+  },
+  {
+    label: "Last 3 Hours",
+    getValue: () => {
+      const end = new Date();
+      const start = new Date(end.getTime() - (3 * 60 * 60 * 1000)); // 3 hours ago
+      return [start, end];
+    }
+  },
+  {
+    label: "Next 5 Hours",
+    getValue: () => {
+      const start = new Date();
+      const end = new Date(start.getTime() + (5 * 60 * 60 * 1000)); // 5 hours ahead
+      return [start, end];
+    }
   }
 ];
 const Component = () => {
@@ -64,8 +82,8 @@ const Component = () => {
   const $pinWrapperRef = useRef(null);
   const $activationWrapperRef = useRef(null);
   const [showCalendarPicker, setShowCalendarPicker] = useState(true);
-  const [hour, setHour] = useState("01");
-  const [minute, setMinute] = useState("01");
+  const [hour, setHour] = useState(currentHour);
+  const [minute, setMinute] = useState(currentMinute);
   const [month, setMonth] = useState(
     String(now.getMonth() + 1).padStart(2, "0")
   );
@@ -136,12 +154,12 @@ const Component = () => {
                 year + "-" + month + "-" + date,
                 year + "-" + month + "-" + date,
               ]} // ['YYYY-MM-DD', 'YYYY-MM-DD']
-              defaultTimes={[hour + ":" + minute, hour + ":" + minute]} // ['hh:mm', 'hh:mm']
+              defaultTimes={[`${hour}:${minute}`, `${hour}:${minute}`]} // ['hh:mm', 'hh:mm']
               initialDates={[
                 year + "-" + month + "-" + date,
                 year + "-" + month + "-" + date,
               ]} // ['YYYY-MM-DD', 'YYYY-MM-DD']
-              initialTimes={[hour + ":" + minute, hour + ":" + minute]} // ['hh:mm', 'hh:mm']
+              initialTimes={[`${hour}:${minute}`, `${hour}:${minute}`]} // ['hh:mm', 'hh:mm']
               onConfirm={(res) => console.log(res, 1)}
               onClose={() => console.log("closed")}
               style={{ width: "300px", margin: "0 auto" }}
@@ -172,16 +190,16 @@ const Component = () => {
                 year + "-" + month + "-" + date,
                 year + "-" + month + "-" + date,
               ]} // ['YYYY-MM-DD', 'YYYY-MM-DD']
-              defaultTimes={[hour + ":" + minute, hour + ":" + minute]} // ['hh:mm', 'hh:mm']
+              defaultTimes={[`${hour}:${minute}`, `${hour}:${minute}`]} // ['hh:mm', 'hh:mm']
               initialDates={[
                 year + "-" + month + "-" + date,
                 year + "-" + month + "-" + date,
               ]} // ['YYYY-MM-DD', 'YYYY-MM-DD']
-              initialTimes={[hour + ":" + minute, hour + ":" + minute]} // ['hh:mm', 'hh:mm']
+              initialTimes={[`${hour}:${minute}`, `${hour}:${minute}`]} // ['hh:mm', 'hh:mm']
               onConfirm={(res) => console.log(res, 1)}
               onClose={() => console.log("closed")}
               style={{ width: "300px", margin: "0 auto" }}
-              customRanges={customRanges}
+              
             />
           </div>
         </div>
