@@ -125,27 +125,27 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
     );
     const handleChooseStartTimeHour = useCallback(
       (res) => {
-        setStartTimePickedArray([res, startTimePickedArray[1]]);
+        setStartTimePickedArray((prev) => [res, ...prev.slice(1)]);
       },
-      [startTimePickedArray]
+      []
     );
     const handleChooseStartTimeMinute = useCallback(
       (res) => {
-        setStartTimePickedArray([startTimePickedArray[0], res]);
+        setStartTimePickedArray((prevArray) => [...prevArray.slice(0, 1), res]);
       },
-      [startTimePickedArray]
+      []
     );
     const handleChooseEndTimeHour = useCallback(
       (res) => {
-        setEndTimePickedArray([res, endTimePickedArray[1]]);
+        setEndTimePickedArray((prevArray) => [res, ...prevArray.slice(1)]);
       },
-      [endTimePickedArray]
+      []
     );
     const handleChooseEndTimeMinute = useCallback(
       (res) => {
-        setEndTimePickedArray([endTimePickedArray[0], res]);
+        setEndTimePickedArray((prevArray) => [...prevArray.slice(0, 1), res]);
       },
-      [endTimePickedArray]
+      []
     );
     const handleOnChangeType = useCallback(() => {
       if (type === TYPES[0]) {
@@ -561,7 +561,7 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
 
     const handleCustomRangeSelection = useCallback((getValue: () => [Date, Date]) => {
       const [start, end] = getValue();
-      
+
       const formatDateTimeWithPadding = (dateTime: Date) => {
         const year = String(dateTime.getFullYear());
         const month = String(dateTime.getMonth() + 1).padStart(2, '0');
