@@ -40,6 +40,11 @@ export interface RangePickerProps {
   onClear?: () => void;
   onClose?: () => void;
   onChooseDate?: (res: object) => void;
+  minDate?: string;
+  customRanges?: Array<{
+    label: string;
+    getValue: () => [Date, Date];
+  }>;
 }
 export const RangePicker: React.FC<RangePickerProps> = memo(
   ({
@@ -61,6 +66,8 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
     onConfirm = () => {},
     onClear = () => {},
     onClose = () => {},
+    minDate = "",
+    customRanges = [],
   }) => {
     // ['YYYY-MM-DD', 'YYYY-MM-DD'] // ['hh:mm', 'hh:mm']
     const isDefaultDatesValid = isValidDates(defaultDates);
@@ -98,7 +105,9 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
     ]);
     const [dates, setDates] = useState(defaultDates);
     const [times, setTimes] = useState(defaultTimes);
-    const [lastChosenRange, setLastChosenRange] = useState("Today");
+    const [lastChosenRange, setLastChosenRange] = useState(
+      customRanges && customRanges.length > 0 ? customRanges[0].label : "Today"
+    );
 
     const handleChooseStartDate = useCallback(
       ({ name, month, year, value }) => {
@@ -116,27 +125,27 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
     );
     const handleChooseStartTimeHour = useCallback(
       (res) => {
-        setStartTimePickedArray([res, startTimePickedArray[1]]);
+        setStartTimePickedArray((prev) => [res, ...prev.slice(1)]);
       },
-      [startTimePickedArray]
+      []
     );
     const handleChooseStartTimeMinute = useCallback(
       (res) => {
-        setStartTimePickedArray([startTimePickedArray[0], res]);
+        setStartTimePickedArray((prevArray) => [...prevArray.slice(0, 1), res]);
       },
-      [startTimePickedArray]
+      []
     );
     const handleChooseEndTimeHour = useCallback(
       (res) => {
-        setEndTimePickedArray([res, endTimePickedArray[1]]);
+        setEndTimePickedArray((prevArray) => [res, ...prevArray.slice(1)]);
       },
-      [endTimePickedArray]
+      []
     );
     const handleChooseEndTimeMinute = useCallback(
       (res) => {
-        setEndTimePickedArray([endTimePickedArray[0], res]);
+        setEndTimePickedArray((prevArray) => [...prevArray.slice(0, 1), res]);
       },
-      [endTimePickedArray]
+      []
     );
     const handleOnChangeType = useCallback(() => {
       if (type === TYPES[0]) {
@@ -374,6 +383,8 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
               onChooseDate={onChooseDate}
               lastChosenRange={lastChosenRange}
               setLastChosenRange={setLastChosenRange}
+              minDate={minDate}
+              customRanges={customRanges}
             />
           )}
         </div>
@@ -413,6 +424,11 @@ interface RangePickerComponentProps {
   handleChooseEndDate: (res: object) => void;
   lastChosenRange?: string;
   setLastChosenRange: (res: string) => void;
+  minDate?: string;
+  customRanges?: Array<{
+    label: string;
+    getValue: () => [Date, Date];
+  }>;
 }
 const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
   ({
@@ -445,6 +461,8 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
     handleChooseEndTimeMinute,
     lastChosenRange,
     setLastChosenRange,
+    minDate,
+    customRanges,
   }) => {
     const [internalShow, setInternalShow] = useState(false);
     useEffect(() => {
@@ -463,13 +481,20 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
       [locale]
     );
 
-    const [chosenRange, setChosenRange] = useState("Today");
+    const [chosenRange, setChosenRange] = useState(
+      customRanges && customRanges.length > 0 ? customRanges[0].label : "Today"
+    );
 
     useEffect(() => {
       if (show) {
-        setChosenRange(lastChosenRange);
+        if (customRanges && customRanges.length > 0) {
+          setChosenRange(customRanges[0].label);
+          handleCustomRangeSelection(customRanges[0].getValue);
+        } else {
+          setChosenRange(lastChosenRange);
+        }
       }
-    }, [show]);
+    }, [show, customRanges]);
 
     const changeRange = (rangeType: string) => {
       setChosenRange(rangeType);
@@ -534,6 +559,57 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
       ]
     );
 
+    const handleCustomRangeSelection = useCallback((getValue: () => [Date, Date]) => {
+      const [start, end] = getValue();
+
+      const formatDateTimeWithPadding = (dateTime: Date) => {
+        const year = String(dateTime.getFullYear());
+        const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+        const day = String(dateTime.getDate()).padStart(2, '0');
+        const hours = String(dateTime.getHours()).padStart(2, '0');
+        const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+        return {
+          name: day,
+          month: month,
+          year: year,
+          hours: hours,
+          minutes: minutes,
+          value: `${year}-${month}-${day} ${hours}:${minutes}`,
+        };
+      };
+
+      const formattedStartDate = formatDateTimeWithPadding(start);
+      const formattedEndDate = formatDateTimeWithPadding(end);
+
+      handleChooseStartDate({
+        name: formattedStartDate.name,
+        month: formattedStartDate.month,
+        year: formattedStartDate.year,
+        value: formattedStartDate.value,
+      });
+      handleChooseEndDate({
+        name: formattedEndDate.name,
+        month: formattedEndDate.month,
+        year: formattedEndDate.year,
+        value: formattedEndDate.value,
+      });
+
+      handleChooseStartTimeHour(formattedStartDate.hours);
+      handleChooseStartTimeMinute(formattedStartDate.minutes);
+      handleChooseEndTimeHour(formattedEndDate.hours);
+      handleChooseEndTimeMinute(formattedEndDate.minutes);
+
+      setSelected(true);
+      setInternalShow(true);
+    }, [
+      handleChooseStartDate,
+      handleChooseEndDate,
+      handleChooseStartTimeHour,
+      handleChooseStartTimeMinute,
+      handleChooseEndTimeHour,
+      handleChooseEndTimeMinute,
+    ]);
+
     return (
       <div className={componentClass}>
         <div
@@ -542,20 +618,37 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
         >
           <div className="ranges-selector">
             <ul>
-              {Object.entries(rangesObj).map(
-                ([range, [startDate, endDate]]) => (
-                  <li key={range} className={`${range === chosenRange ? "active" : ""}`}>
-                    <div
-                      className={`selector-button ${
-                        range === chosenRange ? "active" : ""
-                      }`}
-                      onClick={() => handleRangeSelection(range)}
-                    >
-                      {range}
-                    </div>
-                  </li>
+              {(!customRanges || customRanges.length === 0) && 
+                Object.entries(rangesObj).map(
+                  ([range, [startDate, endDate]]) => (
+                    <li key={range} className={`${range === chosenRange ? "active" : ""}`}>
+                      <div
+                        className={`selector-button ${
+                          range === chosenRange ? "active" : ""
+                        }`}
+                        onClick={() => handleRangeSelection(range)}
+                      >
+                        {range}
+                      </div>
+                    </li>
+                  )
                 )
-              )}
+              }
+              
+              {customRanges && customRanges.map((range, index) => (
+                <li key={`custom-${index}`} className={`${range.label === chosenRange ? "active" : ""}`}>
+                  <div
+                    className={`selector-button ${range.label === chosenRange ? "active" : ""}`}
+                    onClick={() => {
+                      setChosenRange(range.label);
+                      setLastChosenRange(range.label);
+                      handleCustomRangeSelection(range.getValue);
+                    }}
+                  >
+                    {range.label}
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
           <RangeDate
@@ -583,6 +676,7 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
             supportDateRange={supportDateRange}
             duration={duration}
             onChooseDate={onChooseDate}
+            minDate={minDate}
           />
           <div className="react-minimal-datetime-date-picker__divider" />
           <RangeDate
@@ -610,6 +704,7 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
             supportDateRange={supportDateRange}
             duration={duration}
             onChooseDate={onChooseDate}
+            minDate={minDate}
           />
           {(showOnlyTime || type === TYPES[1]) && (
             <div className="react-calendar-range-picker__time-piker">

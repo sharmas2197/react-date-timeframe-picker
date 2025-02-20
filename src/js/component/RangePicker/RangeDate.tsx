@@ -56,6 +56,7 @@ interface IndexProps {
   currentDateObjEnd?: IObjectKeysAny;
   setCurrentDateObjEnd?: (res: object) => void;
   onChooseDate?: (res: object) => void;
+  minDate?: string;
 }
 const Index: React.FC<IndexProps> = memo(
   ({
@@ -77,6 +78,7 @@ const Index: React.FC<IndexProps> = memo(
     supportDateRange = [],
     duration = 0,
     onChooseDate = () => {},
+    minDate,
   }) => {
     const markedDatesHash: IObjectKeysBool = useMemo(() => {
       const res: IObjectKeysBool = {};
@@ -410,6 +412,7 @@ const Index: React.FC<IndexProps> = memo(
           maxSupportDate={maxSupportDate}
           duration={duration}
           onChooseDate={onChooseDate}
+          minDate={minDate}
         />
       );
       transitionContainerStyle = {
@@ -572,7 +575,7 @@ const Index: React.FC<IndexProps> = memo(
                     )
                   }
                 >
-                  <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                  <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6zM6 6h2v12H6z" />
                   <path d="M0 0h24v24H0z" fill="none" />
                 </svg>
               </div>
@@ -720,6 +723,7 @@ interface CalendarBodyProps {
   maxSupportDate: string;
   onClick?: (res: string) => void;
   onChooseDate?: (res: object) => void;
+  minDate?: string;
 }
 const CalendarBody: React.FC<CalendarBodyProps> = memo(
   ({
@@ -738,6 +742,7 @@ const CalendarBody: React.FC<CalendarBodyProps> = memo(
     maxSupportDate,
     duration,
     onChooseDate,
+    minDate,
   }) => {
     const content = Object.keys(data).map((key) => {
       let colHtml;
@@ -745,6 +750,17 @@ const CalendarBody: React.FC<CalendarBodyProps> = memo(
         colHtml = data[key].map((item: { [k: string]: any }, key: any) => {
           const itemDate = new Date(`${item.year}-${item.month}-${item.name}`);
           let isDisabled = pickedYearMonth.month !== item.month;
+
+          if (minDate) {
+            const minDateTime = new Date(minDate);
+            minDateTime.setHours(0, 0, 0, 0);
+            itemDate.setHours(0, 0, 0, 0);
+            
+            if (itemDate < minDateTime) {
+              isDisabled = true;
+            }
+          }
+
           if (minSupportDate) {
             if (new Date(itemDate) < new Date(minSupportDate)) {
               isDisabled = true;
@@ -755,6 +771,7 @@ const CalendarBody: React.FC<CalendarBodyProps> = memo(
               isDisabled = true;
             }
           }
+
           let isPickedStart = false;
           let isPickedEnd = false;
           let isHighlight = false;

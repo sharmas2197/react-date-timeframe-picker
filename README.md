@@ -16,6 +16,11 @@
 npm install react-calendar-range-picker --save
 ```
 
+# Local server
+```sh
+npm run dev
+```
+
 # Browser support
 Tested on IE9+ and Chrome and Safari(10.0.3)
 
