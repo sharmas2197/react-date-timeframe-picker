@@ -488,8 +488,7 @@ const RangePickerComponent: React.FC<RangePickerComponentProps> = memo(
     useEffect(() => {
       if (show) {
         if (customRanges && customRanges.length > 0) {
-          setChosenRange(customRanges[0].label);
-          handleCustomRangeSelection(customRanges[0].getValue);
+          setChosenRange(lastChosenRange || customRanges[0].label);
         } else {
           setChosenRange(lastChosenRange);
         }
