@@ -154,46 +154,68 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
         setType(TYPES[0]);
       }
     }, [type]);
+    const formatDateTime = (date: Date) => ({
+      day: String(date.getDate()).padStart(2, '0'),
+      month: String(date.getMonth() + 1).padStart(2, '0'),
+      year: String(date.getFullYear()),
+      hours: String(date.getHours()).padStart(2, '0'),
+      minutes: String(date.getMinutes()).padStart(2, '0'),
+      value: `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(
+        2,
+        '0'
+      )} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`,
+    });
+
+    const getValidDateTimeValues = (sd: any, ed: any, st: any, et: any, lastChosenRange: any, customRanges: any, clear: boolean) => {
+      if (customRanges?.length && lastChosenRange &&!clear) {
+        const range = customRanges.find((r:any) => r.label === lastChosenRange);
+        if (range) {
+          const [start, end] = range.getValue().map(formatDateTime);
+          return {
+            sd: start.value.split(' ')[0].split('-'),
+            ed: end.value.split(' ')[0].split('-'),
+            st: [start.hours, start.minutes],
+            et: [end.hours, end.minutes],
+          };
+        }
+      }
+
+      return {
+        sd: sd || startDatePickedArray,
+        ed: ed || endDatePickedArray,
+        st: st || startTimePickedArray,
+        et: et || endTimePickedArray,
+      };
+    };
+    
     const handleOnConfirm = useCallback(
-      (sd = null, ed = null, st = null, et = null) => {
-        if (!sd) {
-          sd = startDatePickedArray;
-        }
-        if (!ed) {
-          ed = endDatePickedArray;
-        }
-        if (!st) {
-          st = startTimePickedArray;
-        }
-        if (!et) {
-          et = endTimePickedArray;
-        }
-        const a = new Date(sd.join("-"));
-        const b = new Date(ed.join("-"));
-        const starts = a < b ? sd : ed;
-        const ends = a > b ? sd : ed;
-        const startStr = `${starts.join("-")} ${
-          st[0] && st[1] ? st.join(":") : ""
-        }`;
-        const endStr = `${ends.join("-")} ${
-          et[0] && et[1] ? et.join(":") : ""
-        }`;
+      (sd = null, ed = null, st = null, et = null, clear = false) => {
+        const {
+          sd: startDate,
+          ed: endDate,
+          st: startTime,
+          et: endTime,
+        } = getValidDateTimeValues(sd, ed, st, et, lastChosenRange, customRanges, clear);
+
+        const startDateObj = new Date(startDate.join('-'));
+        const endDateObj = new Date(endDate.join('-'));
+
+        const [starts, ends] = startDateObj < endDateObj ? [startDate, endDate] : [endDate, startDate];
+
+        const startStr = `${starts.join('-')} ${startTime.join(':')}`;
+        const endStr = `${ends.join('-')} ${endTime.join(':')}`;
+
         setStart(startStr);
         setEnd(endStr);
         setStartDatePickedArray(starts);
         setEndDatePickedArray(ends);
-        setStartTimePickedArray(st);
-        setEndTimePickedArray(et);
-        setDates([starts.join("-"), ends.join("-")]);
+        setStartTimePickedArray(startTime);
+        setEndTimePickedArray(endTime);
+        setDates([starts.join('-'), ends.join('-')]);
         setInternalShow(false);
-        onConfirm && onConfirm([startStr, endStr]);
+        onConfirm?.([startStr, endStr, lastChosenRange]);
       },
-      [
-        startDatePickedArray,
-        endDatePickedArray,
-        startTimePickedArray,
-        endTimePickedArray,
-      ]
+      [startDatePickedArray, endDatePickedArray, startTimePickedArray, endTimePickedArray]
     );
     const handleOnClear = useCallback(
       (e) => {
@@ -202,11 +224,15 @@ export const RangePicker: React.FC<RangePickerProps> = memo(
         }
         e.stopPropagation();
         if (isInitialDatesValid) {
+          if(customRanges?.length) {
+            setLastChosenRange("");
+          }
           handleOnConfirm(
             initialDates[0].split("-"),
             initialDates[1].split("-"),
             initialTimes[0].split(":"),
-            initialTimes[1].split(":")
+            initialTimes[1].split(":"),
+            true
           );
           return;
         }
